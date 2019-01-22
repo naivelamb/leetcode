@@ -20,6 +20,10 @@ n = 5, ugly_nums = [1, 2, 4, 7, 8], candidates = [14(2x7), 14, 13, 19]
 n = 6, ugly_nums = [1, 2, 4, 7, 8, 13], candidates = [14, 14, 26(13x2), 19]
 n = 7, ugly_nums = [1, 2, 4, 7, 8, 13, 14], candidates = [16(2x8), 28(7x4), 26, 19]
 
+A pointer array is used to keep track of multiplying which ugly number to the 
+corresponding prime when update. 
+=> candidates[i] = ugly_nums[pointer[i]] * primes[i]
+
 We need to do this from n = 1 to n = n. 
 
 Time complexity is O(nk), where k = len(primes)
