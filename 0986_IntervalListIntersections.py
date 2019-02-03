@@ -4,7 +4,7 @@ https://leetcode.com/problems/interval-list-intersections/
 
 Two pointers. 
 Do intersection between the interval. 
-Keep the one with larger end.
+Keep the interval with larger end, and move the other forward
 Time complexity: O(m + n), m = len(A), n = len(B)
 """
 
@@ -16,6 +16,7 @@ class Interval:
 class Solution:
     def intervalIntersection(self, A: 'List[Interval]', B: 'List[Interval]') -> 'List[Interval]':
         def merge(a, b):
+            # get intersection of two intervals. 
             l = max(a.start, b.start)
             r = min(a.end, b.end)
             res = []

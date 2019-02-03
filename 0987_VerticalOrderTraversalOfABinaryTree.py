@@ -18,9 +18,10 @@ import collections
 class Solution:
     def verticalTraversal(self, root: 'TreeNode') -> 'List[List[int]]':
         ref = collections.defaultdict(list)
+        # (node, index) in the queue
         queue = [[root, 0]]
-        min_idx = 0
-        max_idx = 0
+        # avoid sort index
+        min_idx, max_idx = 0, 0
         while queue:
             tmp = []
             ref_tmp = collections.defaultdict(list)
@@ -33,6 +34,7 @@ class Solution:
                 if node.right:
                     tmp.append([node.right, idx + 1])
             queue = tmp
+            # sort nodes in the same level
             for key in ref_tmp:
                 ref[key] += sorted(ref_tmp[key])
         ans = []

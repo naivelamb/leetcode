@@ -17,8 +17,7 @@ class Solution:
         for a in A:
             if a % 2 == 0:
                 total += a
-        for q in queries:
-            val, idx = q
+        for val, idx in queries:
             old_a = A[idx]
             A[idx] += val
             new_a = A[idx]

@@ -2,7 +2,8 @@
 """
 https://leetcode.com/problems/smallest-string-starting-from-leaf/
 
-BFS, get all the strings from leaf to root, and compare them every time we get a new string. 
+BFS, get all the strings from leaf to root, and compare them every time we get 
+a new string. 
 Time complexity: O(n), n = number of nodes
 """
 class TreeNode:
@@ -21,10 +22,10 @@ class Solution:
         
         # bfs
         queue = collections.deque()
-        queue.append([root, 1, get_char(root.val)])
+        queue.append([root, get_char(root.val)])
         ans = ''
         while queue:
-            node, level, curr = queue.popleft()
+            node, curr = queue.popleft()
             if not node.left and not node.right:
                 # find leaf
                 if not ans:
@@ -33,8 +34,8 @@ class Solution:
                     ans = sorted([ans, curr])[0]
             if node.left:
                 new_chr = get_char(node.left.val) + curr
-                queue.append([node.left, level + 1, new_chr])
+                queue.append([node.left, new_chr])
             if node.right:
                 new_chr = get_char(node.right.val) + curr
-                queue.append([node.right, level + 1, new_chr])      
+                queue.append([node.right, new_chr])      
         return ans
