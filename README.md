@@ -1,2 +1,2 @@
 # leetcode
-My leetcode AC code in Python3. 
+My leetcode AC code using Python3. 
