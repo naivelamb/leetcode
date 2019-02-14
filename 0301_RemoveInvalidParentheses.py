@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Feb 14 13:09:16 2019
+https://leetcode.com/problems/remove-invalid-parentheses/
 
 #1 BFS + memory
 Given a string, we can compute the minimum remove of left and right to make it 
