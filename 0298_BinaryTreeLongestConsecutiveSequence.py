@@ -2,8 +2,18 @@
 """
 https://leetcode.com/problems/binary-tree-longest-consecutive-sequence/
 
-BFS. Put (node, l) into queue. l -> length of consecutive sequence ending at 
+1. BFS. 
+Put (node, l) into queue. l -> length of consecutive sequence ending at 
 the node. If node.left.val == node.val + 1, then put (l + 1) into queue. 
+
+2. Bottom-up DFS
+Use a helper dfs(node) function, which return the maximum consecutive length 
+starting at node. 
+Then for a node, 
+L = dfs(node.left) + 1 if node.left.val == node.val + 1, else L = 1
+R = dfs(node.right) + 1 if node.right.val == node.val + 1, else R = 1
+Length = max(L, R)
+
 """
 import collections
 class TreeNode:
@@ -32,3 +42,20 @@ class Solution:
                 else:
                     queue.append((node.right, 1))
         return res
+
+    def longestConsecutive_dfs(self, root: 'TreeNode') -> 'int':
+        self.maximum = 0
+        def dfs(node):
+            if not node:
+                return 0
+            L = dfs(node.left) + 1
+            R = dfs(node.right) + 1
+            if node.left and node.left.val != node.val + 1:
+                L = 1
+            if node.right and node.right.val != node.val + 1:
+                R = 1
+            length = max(L, R)
+            self.maximum = max(self.maximum, length)
+            return length
+        dfs(root)
+        return self.maximum
