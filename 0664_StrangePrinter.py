@@ -6,6 +6,8 @@ Let dp(i, j) be the answer to print s[i], s[i+1], s[i+2], …, s[j].
 If we have a k, such that i < k < j, and s[i] == s[k], then 
 dp(i, j) = dp(i, k - 1) + dp(k + 1, j). 
 So we can solve the problem by dp + dfs.
+
+Time Complexity: O(n^3)
 """
 class Solution:
     def strangePrinter(self, s: 'str') -> 'int':

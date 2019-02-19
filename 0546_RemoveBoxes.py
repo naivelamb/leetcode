@@ -6,6 +6,8 @@ dp[i][j][k] => max score of subarray b[i] ~ b[j] if there are k boxes that have
  the same color as b[j] following b[j].
 dp[i][j][k] = dp[i][j-1][0] + (k + 1)^2           | Case 1: drop box[j], remove k + 1 boxes
             = dp[i][p][k+1] + dp[p+1][j-1][0]     | Case 2: Try all breakpoints p, b[p] == b[j]
+
+Time complexity: O(n^3)
 """
 class Solution:
     def removeBoxes(self, boxes: 'List[int]') -> 'int':
