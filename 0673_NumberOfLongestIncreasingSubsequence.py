@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Feb 15 18:20:31 2019
+https://leetcode.com/problems/number-of-longest-increasing-subsequence/
 
 We know the length of the longest increasing subsequence can be got by dp, 
 where dp[i] is the length of the longest subsequence ending at nums[i]. 
@@ -13,6 +13,8 @@ If dp[i] + 1 == dp[j], then count[j] += count[i]
 
 Finally, we need to find the index ending at which we have longest subsequence, 
 then sum all of them. 
+
+Time Complexity: O(n^2)
 """
 class Solution:
     def findNumberOfLIS(self, nums: 'List[int]') -> 'int':

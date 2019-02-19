@@ -41,7 +41,7 @@ class Solution:
             return res
         
         for i1 in range(M):
-            tmp = [0] * N
+            tmp = [0] * N # col/row collapsed array for [i1, i2] => 1D
             for i2 in range(i1, M):
                 sums, low, maxArea = [0], 0, -float('inf')
                 for j in range(N):
