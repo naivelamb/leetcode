@@ -27,25 +27,6 @@ class Solution:
                         cnt[j] = cnt[i]
                     elif dp[i] + 1 == dp[j]:
                         cnt[j] += cnt[i]
-                        
-        
-        
-        
-        
-        
-        
-        
-        n = len(nums)
-        if n <= 1: return n
-        dp, cnt = [1] * n, [1] * n
-        for j in range(n):
-            for i in range(j):
-                if nums[i] < nums[j]:
-                    if dp[i] >= dp[j]:
-                        dp[j] = 1 + dp[i]
-                        cnt[j] = cnt[i]
-                    elif dp[i] + 1 == dp[j]:
-                        cnt[j] += cnt[i]
         longest = max(dp)
         return sum(cnt[i] for i in range(n) if dp[i] == longest)
 
