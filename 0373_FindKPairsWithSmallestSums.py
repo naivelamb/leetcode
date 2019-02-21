@@ -10,15 +10,17 @@ Initialize the heap as (nums1[i] + nums2[0], i, 0).
 Every time pop one element from heap, we push a new element which is,
 (nums1[i] + nums2[j + 1], i, j+1) to the heap. 
 
-Time Complexity: O(m + klogk)
+Time Complexity: O(m + klogm)
 
 #3 BFS
 The pairs of [1, 7, 11] and [2, 4, 6] can be viewed as a matrix:
-   |  1   |   7  |   11   
-2  |  3   |   9  |   13
-4  |  5   |   11 |   15
-6  |  7   |   13 |   17
+   |  1  |   7  |  11   
+2  |  3  |   9  |  13
+4  |  5  |  11  |  15
+6  |  7  |  13  |  17
 We can do BFS from the top-left corner, expand to the right and bottom cell. 
+
+O(klogk)
 """
 import heapq
 class Solution:
@@ -57,10 +59,10 @@ class Solution:
             _, i, j = heapq.heappop(heap)
             res.append([nums1[i], nums2[j]])
             cnt += 1
-            if i + 1 < len(nums1) and (i + 1, j) not in seen:
+            if i + 1 < len(nums1) and j == 0:
                 heapq.heappush(heap, (nums1[i + 1] + nums2[j], i + 1, j))
                 seen[i + 1, j] = 1
-            if j + 1 < len(nums2) and (i, j + 1) not in seen:
+            if j + 1 < len(nums2):
                 heapq.heappush(heap, (nums1[i] + nums2[j + 1], i, j + 1))
                 seen[i, j + 1] = 1
         return res
