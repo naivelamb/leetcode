@@ -20,7 +20,7 @@ The pairs of [1, 7, 11] and [2, 4, 6] can be viewed as a matrix:
 6  |  7  |  13  |  17
 We can do BFS from the top-left corner, expand to the right and bottom cell. 
 
-O(klogk)
+Time Complexity: O(klogk)
 """
 import heapq
 class Solution:
