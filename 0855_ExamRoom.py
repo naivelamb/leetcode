@@ -10,18 +10,25 @@ Time Complexity: Both are O(n)
 
 
 #2 Heap + dict
-We use heap to maintain the current (intervals length, start, end).
-Let's say we have the information about an empty site and its neighbors, left and right.
-Once the empty site is occupied, we need to set, 
-Its left's right neighbor to be the empty site.
-Its right's left neighbor to be the empty site.
-We also generate two new intervals, which need to be pushed into the heap.
+We use heap to maintain the current (intervals half length, start, end).
+We use half length because an interval of length 5 should have same priority as
+an interval of length 4. 
+
+Let's say we need to seat in an interval, the position to be seated is
+t = (start + end) // 2
+Once the seat on the position, we need to add two new intervals: (start, t-1)
+and (t+1, end). Since t now becomes an occupied site, we need to set its neighbors
+to be -1. 
 
 When leave, we need to combine two intervals and update the neighbor information.
 
-We can use two dictionaries to maintain the neighbor information. 
-We don't need to delete an intervals, an popped intervals is valid only when
-its neighbors information matches its start and end.
+For the neighbor information, we can use two dictionaries to record. We only keep 
+the information about empty site. When a site becomes occupied, we set its 
+neibhbors to be -1. 
+
+We don't need to delete any intervals, an popped interval is valid only when its 
+neighbor information matches its start and end. We will keep popping until a 
+valid interval is found.
 """
 import bisect
 class ExamRoom:
@@ -80,7 +87,7 @@ class ExamRoom_heap:
         
     def seat(self) -> int:
         w, l, r = self.pop()
-        t = l + (r - l) // 2
+        t = (l + r) // 2
         if l == 0:
             t = 0
         elif r == self.n-1:
