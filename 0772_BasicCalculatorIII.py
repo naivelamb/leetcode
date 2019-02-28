@@ -25,7 +25,7 @@ class Solution:
         
         num, op = 0, '+'
         stack = []
-        for i, ch in enumerate(s):
+        for ch in s:
             if ch.isdigit():
                 num = num * 10 + int(ch)
             elif ch in '+-*/':
