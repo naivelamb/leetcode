@@ -3,6 +3,8 @@
 https://leetcode.com/problems/max-consecutive-ones-iii/
 
 Similar to 487. Use two pointers, make sure # of 0s within the window <= K
+
+Time Complexity: O(n), each element is scaned for at most twice.
 """
 class Solution:
     def longestOnes(self, A, K):

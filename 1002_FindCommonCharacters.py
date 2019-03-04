@@ -4,9 +4,11 @@ https://leetcode.com/problems/find-common-characters/
 
 Use dictionary to record the letters and their count in the first word.
 Compare it with the rest.
+
+Time Comlexity: O(mn), m -> length of word, n -> total words 
 """
 class Solution:
-    def commonChars(self, A: List[str]) -> List[str]:
+    def commonChars(self, A):
         ref = {}
         for ch in A[0]:
             ref[ch] = ref.get(ch, 0) + 1
