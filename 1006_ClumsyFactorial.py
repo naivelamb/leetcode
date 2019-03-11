@@ -12,7 +12,7 @@ first, second = helper(N - 4)
 new_first = N * (N - 1) // (N - 2)
 new_second = N - 3 - first + second
 
-Time Complexity: O(logN)
+Time Complexity: O(N)
 """
 class Solution:
     def clumsy(self, N: int) -> int:
