@@ -2,7 +2,7 @@
 """
 https://leetcode.com/problems/longest-word-in-dictionary-through-deleting/
 
-compare one by one.
+Compare one by one.
 
 Time complexity: O(mn), n -> len(d), m -> max(len(x) for x in d)
 """

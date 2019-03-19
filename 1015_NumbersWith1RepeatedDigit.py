@@ -29,7 +29,7 @@ Need to be careful about the first digit, it cannot be 0.
 """
 class Solution:
     def numDupDigitsAtMostN(self, N: int) -> int:
-        L = list(map(int, str(N)))
+        L = list(map(int, str(N + 1)))
         res, n = 0, len(L)
         
         def A(m, n):
