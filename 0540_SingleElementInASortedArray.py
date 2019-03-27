@@ -13,10 +13,10 @@ Time complexity: O(logn)
 """
 class Solution:
     def singleNonDuplicate(self, nums):
-        l, r = 0, len(nums)
+        l, r = 0, len(nums) - 1
         while l < r:
             mid = (l + r) // 2
-            if nums[mid] != nums[mid - 1] and nums[mid] != nums[mid + 1]:
+            if nums[mid] != nums[mid + 1] and nums[mid] != nums[mid - 1]:
                 return nums[mid]
             if mid % 2 == 0:
                 if nums[mid] == nums[mid + 1]:
