@@ -2,7 +2,7 @@
 """
 https://leetcode.com/problems/predict-the-winner/
 
-dp[i][j] -> cost for player 1 to reach the state of nums[i, j]
+dp[i][j] -> cost for to reach the state of nums[i, j]
 
 Time complexity: O(n^2)
 """
