@@ -2,7 +2,7 @@
 """
 https://leetcode.com/problems/linked-list-random-node/submissions/
 
-Reservoir  sampling. 
+Reservoir sampling. 
 
 Time complexity: getRandom: O(n)
 """
