@@ -3,7 +3,8 @@
 https://leetcode.com/problems/closest-binary-search-tree-value-ii/
 
 BST inorder gives the non-decreasing array. We do inorder and keep track of the 
-res. When length is larger than k, we decide whether pop left and append right. 
+result. When length of result is larger than k, we decide whether pop left and 
+append right. 
 
 Time complexity: O(n)
 """
