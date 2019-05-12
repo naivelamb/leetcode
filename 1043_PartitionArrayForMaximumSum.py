@@ -6,17 +6,21 @@ A number can only influence the K neighbors at most.
 Let dp[i] be the maximum sum for array A[:i+1] with subarrays of length at 
 most k.
 Then dp[i] = max(dp[i], dp[i-(j+1)] + max(A[i-j:i+1]) * (j+1) for j in range(k))
+The max(A[i-j: i+1]) can be computed first. 
 
 Time complexity: O(nk)
 """
 class Solution:
     def maxSumAfterPartitioning(self, A, K):
         n = len(A)
-        dp = [0] * (n + K)
+        dp = [0] * (n)
         
         for i in range(n):
             curMax = 0
             for k in range(1, min(K, i + 1) + 1):
                 curMax = max(curMax, A[i-k+1])
-                dp[i] = max(dp[i], dp[i-k] + curMax*k)
+                if i - k < 0:
+                    dp[i] = max(dp[i], curMax*k)
+                else:
+                    dp[i] = max(dp[i], dp[i-k] + curMax*k)
         return dp[n - 1]
