@@ -12,15 +12,11 @@ Time complexity: O(nk)
 """
 class Solution:
     def maxSumAfterPartitioning(self, A, K):
-        n = len(A)
-        dp = [0] * (n)
-        
+        n, dp = len(A), [0]
         for i in range(n):
-            curMax = 0
-            for k in range(1, min(K, i + 1) + 1):
-                curMax = max(curMax, A[i-k+1])
-                if i - k < 0:
-                    dp[i] = max(dp[i], curMax*k)
-                else:
-                    dp[i] = max(dp[i], dp[i-k] + curMax*k)
-        return dp[n - 1]
+            MAX = A[i]
+            dp.append(dp[-1] + MAX)
+            for j in range(i - 1, max(i-K, -1), -1):
+                MAX = max(MAX, A[j])
+                dp[-1] = max(dp[-1], dp[j] + MAX * (i - j + 1))
+        return dp[-1]
