@@ -4,47 +4,52 @@
 https://leetcode.com/problems/push-dominoes/
 
 #1 Brute force
-Find the first L/R at the head/tail, then decide how to deal with the non-
-dominoes at head/tail. 
+L..L or R...R -> set all dots to be L or R
+R..L/R...L -> RRLL/RR.LL
+L..R -> L..R
+Find all neighbor symbols and modify the dots.
 
-Then find L/R pairs, and decide how to deal with the dominoes in between. 
-Time complexity: O(n)
+Time complexity: O(N)
+
 """
 
 class Solution:
     def pushDominoes(self, dominoes: str) -> str:
-        dominoes = list(dominoes)
-        head, tail, n = 0, len(dominoes) - 1, len(dominoes)
+        symbols = [(i, x) for i, x in enumerate(dominoes) if x != '.']
+        symbols = [(-1, 'L')] + symbols + [(len(dominoes), 'R')]
         
-        # search starting L/R, deal with head/tail
-        while head < n and dominoes[head] == '.':
-            head += 1
-        if head < n and dominoes[head] == 'L':
-            dominoes[:head] = ['L'] * head
-        while tail >= 0 and dominoes[tail] == '.':
-            tail -= 1
-        if tail >= 0 and dominoes[tail] == 'R':
-            dominoes[tail:] = ['R'] * (len(dominoes) - tail)
-            
-        prev = head
-        for i in range(head+1, tail+1):
-            if dominoes[i] == 'L':
-                if dominoes[prev] == 'L':
-                   dominoes[prev:i] = ['L'] * (i - prev) 
-                else:
-                    mid = (prev + i) // 2
-                    if (prev + i) % 2 == 0:
-                        dominoes[prev:mid] = ['R'] * (mid - prev)
-                        dominoes[mid+1:i] = ['L'] * (i - mid - 1)
-                    else:
-                        dominoes[prev:mid+1] = ['R'] * (mid - prev + 1)
-                        dominoes[mid+1:i] = ['L'] * (i - mid - 1)
-                prev = i
-            elif dominoes[i] == 'R':
-                if dominoes[prev] == 'R':
-                    dominoes[prev:i] = 'R' * (i - prev)
-                prev = i
-        return ''.join(dominoes)
+        ans = list(dominoes)
+        for (i, x), (j, y) in zip(symbols, symbols[1:]):
+            if x == y:
+                for k in range(i+1, j):
+                    ans[k] = x
+            elif x > y: # RL
+                dots = j - i - 1
+                ans[i+1:i+1+dots//2] = ['R'] * (dots//2)
+                ans[j-dots//2:j] = ['L'] * (dots//2)
+        return ''.join(ans)
+
+    def pushDominoes_stack(self, dominoes: str) -> str:
+        dominoes = list('L' + dominoes + 'R')
+        left, right = [], []
+        for i, ch in enumerate(dominoes):
+            if ch == 'R':
+                right.append(i)
+            if ch == 'L':
+                left.append(i)
+        
+        l, r = 0, 0
+        while l < len(left) and r < len(right):
+            if right[r] < left[l]: # R....L
+                dots = (left[l] - right[r] - 1) // 2
+                dominoes[right[r]+1: right[r] + dots+1] = ['R'] * dots
+                dominoes[left[l] - dots: left[l]] = ['L'] * dots
+                l += 1
+                r += 1
+            else:
+                l += 1
+        return ''.join(dominoes[1:-1])
+
 
 test = [
         ".",
