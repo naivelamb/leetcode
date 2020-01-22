@@ -44,6 +44,7 @@ class Solution:
     def shortestWay2(self, source, target):
         # store information into a hashmap
         import collections
+        from bisect import bisect
         hashmap = collections.defaultdict(list)
         for i, s in enumerate(source):
             hashmap[s].append(i)
@@ -51,17 +52,15 @@ class Solution:
         for c in target:
             if c not in hashmap:
                 return -1
+
+            j = bisect(hashmap[c], pointer)
+            if j >= len(hashmap[c]):
+                pointer = hashmap[c][0]
+                ans += 1
             else:
-                flag_no_avaiable = True
-                for i in hashmap[c]: # find next available char
-                    if i > pointer:
-                        pointer = i
-                        flag_no_avaiable = False
-                        break
-                if flag_no_avaiable:
-                    pointer = hashmap[c][0]
-                    ans += 1
+                pointer = hashmap[c][j]
         return ans
+        
 sol = Solution()
 source = "abc"
 target = "abcbc"
