@@ -12,6 +12,9 @@ two pointer to do this.
 2) Else, p_s += 1
 3) If p_s == len(source) ==> ans += 1, p_s = 0
 4) At last, check if ans += (p_s != 0)
+
+Method 2:
+If we know next avaiable position, we can jump faster!
 """
 
 class Solution:
@@ -38,6 +41,27 @@ class Solution:
             ans += 1
         return ans
 
+    def shortestWay2(self, source, target):
+        # store information into a hashmap
+        import collections
+        hashmap = collections.defaultdict(list)
+        for i, s in enumerate(source):
+            hashmap[s].append(i)
+        ans, pointer = 1, -1
+        for c in target:
+            if c not in hashmap:
+                return -1
+            else:
+                flag_no_avaiable = True
+                for i in hashmap[c]: # find next available char
+                    if i > pointer:
+                        pointer = i
+                        flag_no_avaiable = False
+                        break
+                if flag_no_avaiable:
+                    pointer = hashmap[c][0]
+                    ans += 1
+        return ans
 sol = Solution()
 source = "abc"
 target = "abcbc"
