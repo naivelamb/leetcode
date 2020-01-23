@@ -6,7 +6,7 @@ Return size of a set, not a interval.
 Sort the intervals by end. Then we need to keep track of the right-most 2 elements
 and use them as many as possible.
 
-Time complexity: O(nlog(n))
+Time complexity: O(n)
 """
 import collections
 
