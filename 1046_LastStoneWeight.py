@@ -2,7 +2,7 @@
 """
 https://leetcode.com/problems/last-stone-weight/
 
-Use heap to store the stones, pop biggest two every step. 
+Use heap to store the stones, pop biggest two every step.
 
 Time Complexity: O(nlogn), n -> len(stones)
 """
@@ -15,5 +15,4 @@ class Solution:
             x, y = heapq.heappop(heap), heapq.heappop(heap)
             if x != y:
                 heapq.heappush(heap, y - x)
-        return heap[0] if heap else 0
-                
+        return -heap[0] if heap else 0
