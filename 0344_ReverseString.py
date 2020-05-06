@@ -14,3 +14,11 @@ class Solution:
             s[l], s[r] = s[r], s[l]
             l += 1
             r -= 1
+
+    def reverseString_recursion(self, s) -> 'None':
+        def helper(start, end, ls):
+            if start >= end:
+                return
+            ls[start], ls[end] = ls[end], ls[start]
+            return helper(start+1, end-1, ls)
+        return helper(0, len(s)-1, s)
