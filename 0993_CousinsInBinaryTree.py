@@ -9,7 +9,7 @@ import collections
 class Solution:
     def isCousins_bfs(self, root: 'TreeNode', x: 'int', y: 'int') -> 'bool':
         parents, depths = {}, {}
-        queue = collections.deque((root, 0))
+        queue = collections.deque([(root, 0)])
         while queue:
             node, d = queue.popleft()
             if node.left:
@@ -29,7 +29,7 @@ class Solution:
         if parents[x] != parents[y] and depths[x] == depths[y]:
             return True
         return False
-    
+
     def isCousins_dfs(self, root: 'TreeNode', x: 'int', y: 'int') -> 'bool':
         parent, depth = {}, {}
         def dfs(node, par = None):
