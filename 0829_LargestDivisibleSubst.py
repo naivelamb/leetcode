@@ -11,7 +11,7 @@ Space compleixy: O(N^2), N = len(nums)
 """
 class Solution:
     def largestDivisibleSubset(self, nums):
-        if len(nums) == 0
+        if len(nums) == 0:
             return []
         nums.sort()
         dp = [[num] for num in nums]
