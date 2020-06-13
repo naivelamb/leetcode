@@ -2,7 +2,9 @@
 """
 https://leetcode.com/problems/insert-delete-getrandom-o1/
 
-Swap position when removing something in bewteen
+Use a list to maintin all values, a dict for the map between value and position.
+We need to make sure remove something from the middle is O(1).
+Swap position when removing something in the middle.
 """
 
 import random
@@ -24,7 +26,7 @@ class RandomizedSet:
         self.vals.append(val)
         self.pos[val] = len(self.vals) - 1
         return True
-    
+
     def remove(self, val: 'int') -> 'bool':
         """
         Removes a value from the set. Returns true if the set contained the specified element.
@@ -38,7 +40,7 @@ class RandomizedSet:
         del self.pos[val]
         self.vals.pop()
         return True
-        
+
     def getRandom(self) -> 'int':
         """
         Get a random element from the set.
