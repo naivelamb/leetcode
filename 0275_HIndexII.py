@@ -2,16 +2,13 @@
 """
 https://leetcode.com/problems/h-index-ii/
 
-Binary search O(nlogn)
+Binary search O(logN), N = len(citations)
 
-Citations[mid] == len - mid, there are mid papers that have at least 
-citations[mid] citations.
+Citations[mid] == len - mid, there are mid papers that have at least citations[mid] citations.
 
-Citations[mid] > len - mid, there are mid papers that have more than 
-citations[mid] citations, search in the left half.
+Citations[mid] > len - mid, there are mid papers that have more than citations[mid] citations, search in the left half.
 
-Citations[mid] < len - mid, there are mid papers that have less than 
-citations[mid] citations, search in the right half. 
+Citations[mid] < len - mid, there are mid papers that have less than citations[mid] citations, search in the right half.
 """
 class Solution:
     def hIndex(self, citations: 'List[int]') -> 'int':
@@ -24,7 +21,7 @@ class Solution:
             else:
                 l = mid + 1
         return n - l
-    
+
 s = Solution()
 a = [0]
 print('Should be 0. The answer is: ', s.hIndex(a))
