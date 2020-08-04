@@ -25,18 +25,19 @@ https://leetcode.com/problems/flatten-nested-list-iterator/
 
 class NestedIterator:
     def __init__(self, nestedList: [NestedInteger]):
-        self.data = nestedList
+        self.stack = list(reversed(nestedList))
 
     def next(self) -> int:
-        return self.data.pop(0).getInteger()
+        self.make_stack_top_an_integer()
+        return self.stack.pop().getInteger()
 
     def hasNext(self) -> bool:
-        while self.data:
-            if self.data[0].isInteger():
-                return True
-            else:
-                self.data = self.data.pop(0).getList() + self.data
-        return False
+        self.make_stack_top_an_integer()
+        return len(self.stack) > 0
+
+    def make_stack_top_an_integer(self):
+        while self.stack and not self.stack[-1].isInteger():
+            self.stack.extend(reversed(self.stack.pop().getList()))
 
 # Your NestedIterator object will be instantiated and called as such:
 # i, v = NestedIterator(nestedList), []
