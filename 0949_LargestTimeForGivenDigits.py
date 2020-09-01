@@ -13,6 +13,6 @@ class Solution:
         if ans >= 0:
             hours = ans // 60
             mins = ans % 60
-            return f"{hours}:{mins}"
+            return f"{hours:02}:{mins:02}"
         else:
             return ""
