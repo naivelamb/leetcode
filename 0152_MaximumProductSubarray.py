@@ -12,7 +12,7 @@ Time Complexity: O(N)
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
         min_val, max_val = nums[0], nums[0]
-        ans = 0
+        ans = nums[0]
         for n in nums[1:]:
             min_val, max_val = min(n, n*min_val, n*max_val), max(n, n*min_val, n*max_val)
             ans = max(ans, max_val)
