@@ -4,6 +4,8 @@ https://leetcode.com/problems/word-break/
 
 dp[i] => if s[:i] can be broken.
 To comput dp[j] need all i such that i < j, check s[i:j] in wordDict or not.
+
+Time Complexity: O(N^2)
 """
 class Solution:
     def wordBreak(self, s, wordDict):
