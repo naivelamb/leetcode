@@ -45,7 +45,7 @@ class Solution:
         m, n = len(matrix), len(matrix[0])
         col_nums = [matrix[i][0] for i in range(m)]
         row = binary_search_col(col_nums, target)
-        print(row)
+
         if row == -1:
             return False
         else:
