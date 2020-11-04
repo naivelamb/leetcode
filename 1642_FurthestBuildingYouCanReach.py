@@ -1,9 +1,13 @@
 """
 https://leetcode.com/problems/furthest-building-you-can-reach/
 
-DFS, record the remain bricks and ladders at each position.
+1. DFS, record the remain bricks and ladders at each position.
 
-Time compleixty: O(N)
+Time compleixty: O(2^N)
+
+2. PriorityQueue, record the difference, stop when len(heap) > ladders, try to use bricks. 
+
+Time complexity: O(NlogK), K = ladders
 """
 class Solution:
     def furthestBuilding(self, heights: List[int], bricks: int, ladders: int) -> int: 
@@ -24,3 +28,15 @@ class Solution:
                     if bricks >= delta:
                         stack.append((i+1, bricks - delta, ladders))
         return ans
+
+    def furthestBuilding_pq(self, heights: List[int], bricks: int, ladders: int) -> int: 
+        heap = []
+        for i in range(1, len(heights)):
+            d = heights[i] - heights[i-1]
+            if d > 0:
+                heapq.heappush(heap, d)
+                if len(heap) > ladders:
+                    bricks -= heapq.heappop(heap)
+                    if bricks < 0:
+                        return i - 1
+        return len(heights) - 1
