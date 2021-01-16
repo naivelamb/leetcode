@@ -21,7 +21,7 @@ class Solution:
                 tmp = i + 1 - l
                 if tmp > len(nums):
                     continue
-                if l == 0 or i == len(nums) - 1 or l < len(nums) - 1 < i:
+                if l == 0 or i == len(nums) - 1 or l <= len(nums) - 1 < i:
                     ans = min(ans, tmp)
         
         return ans if ans < float('inf') else -1
