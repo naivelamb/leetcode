@@ -21,7 +21,7 @@ class Solution:
             for i in range(0, n - jump, jump * 2):
                 lists[i] = self.mergeTwoList(lists[i], lists[i + jump])
             jump *= 2
-        return lists[0] if n > 0 else lists
+        return lists[0] if n > 0 else None
         
     
     def mergeTwoList(self, l1, l2):
