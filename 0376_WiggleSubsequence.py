@@ -10,8 +10,8 @@ For a nums[i], to get up[i] and down[i] we need to check all 0 <= j < i.
 Time complexity: O(n^2), n = len(nums)
 
 2). We don't need to check every j < i.
-up[i] -> max length for nums[:i+1], last one wiggle up.
-down[i] -> max length for nums[:i+1], last one wiggle down.
+up[i] -> max length for nums[:i+1], ending with nums[i], last one wiggle up.
+down[i] -> max length for nums[:i+1], ending with nums[i], last one wiggle down.
 
 If nums[i] > nums[i-1]
 a. nums[i-1] is the last element of down[i-1] sub sequence, then up[i] = down[i-1] + 1
