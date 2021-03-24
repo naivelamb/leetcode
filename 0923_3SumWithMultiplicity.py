@@ -40,7 +40,7 @@ class Solution:
         
         # x == y == z
         if target % 3 == 0:
-            x = target / 3
+            x = target // 3
             if 0 <= x <= 100:
                 ans += count[x] * (count[x] - 1) * (count[x] - 2) // 6
         return ans % MOD
