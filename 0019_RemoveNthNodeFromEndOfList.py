@@ -12,22 +12,22 @@ Time complexity: O(N)
 #         self.next = next
 class Solution:
     def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
-        p2, i = head, n
-        while i != 0 and p2:
-            p2 = p2.next
+        last = head
+        i = n
+        while i != 0 and last:
+            last = last.next
             i -= 1
-        
+
         dummy = ListNode()
         dummy.next = head
-        prev, p1 = dummy, head
-        while p2:
-            p1 = p1.next
-            p2 = p2.next
+        prev, curr = dummy, head
+        while last:
             prev = prev.next
-        
-        if p2:
-            prev.next = p1.next
+            curr = curr.next
+            last = last.next
+
+        if curr:
+            prev.next = curr.next
         else:
             prev.next = None
-
         return dummy.next
