@@ -35,7 +35,7 @@ class Solution:
             root.left = None
             root.right = l_head if l_head else r_head
             if l_tail:
-                l_tail = r_head
+                l_tail.right = r_head
             tail = r_tail if r_head else l_tail
             return root, tail
         helper(root)
