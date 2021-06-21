@@ -35,12 +35,45 @@ class Solution:
 
         return ans
 
+    def shortestDistanceColor_dp(self, colors, queries):
+        n = len(colors)
+        distance = [[-1] * n for _ in range(3)]
+        idxs = [-1, -1, -1]
+        
+        
+        for i in range(n):
+            color = colors[i] - 1
+            idxs[color] = i
+            for c in range(3):
+                if idxs[c] == -1:
+                    pass
+                else:
+                    distance[c][i] = i - idxs[c]
+        
+        idxs = [n, n, n]
+        for i in range(n-1, -1, -1):
+            color = colors[i] - 1
+            idxs[color] = i
+            for c in range(3):
+                if idxs[c] == n:
+                    pass
+                else:
+                    if distance[c][i] == -1:
+                        distance[c][i] = idxs[c] - i
+                    else:
+                        distance[c][i] = min(distance[c][i], idxs[c] - i)
+        
+        ans = []
+        for i, c in queries:
+            ans.append(distance[c-1][i])
+        return ans
+
 sol = Solution()
 
 colors = [1,1,2,1,3,2,2,3,3]
 queries = [[1,3],[2,2],[6,1]]
-assert sol.shortestDistanceColor(colors, queries) == [3, 0, 3]
+assert sol.shortestDistanceColor_dp(colors, queries) == [3, 0, 3]
 
-colors = [1,2]
-queries = [[0,3]]
-assert sol.shortestDistanceColor(colors, queries) == [-1]
+#colors = [1,2]
+#queries = [[0,3]]
+#assert sol.shortestDistanceColor(colors, queries) == [-1]
