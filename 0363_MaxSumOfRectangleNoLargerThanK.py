@@ -31,12 +31,11 @@ class Solution:
                 return -float('inf')
             mid = (l + r) // 2
             res = max(findMaxArea(sums, l, mid), findMaxArea(sums, mid, r))
-            i, j = 0, mid
-            while i < mid and j < len(sums):
-                if sums[j] - sums[i] <= k:
-                    res = max(res, sums[j] - sums[i])
-                    j += 1
-                i += 1
+            i = mid
+            for left in sums[l:mid]:
+                while i < len(sums) and sums[i] - left <= k:
+                    res = max(res, sums[i]- left)
+                    i += 1
             sums[l:r] = sorted(sums[l:r])
             return res
         
@@ -51,12 +50,12 @@ class Solution:
                     low = min(low, sums[-1])
                 if maxArea <= ans:
                     continue
-                elif maxArea == k:
+                if maxArea == k:
                     return k
-                else:
+                if maxArea > k:
                     maxArea = findMaxArea(sums, 0, N + 1)
                 ans = max(maxArea, ans)
-            return ans
+        return ans or 0
 s = Solution()
 matrix = [[1,0,1],[0,-2,3]]
 k = 2
